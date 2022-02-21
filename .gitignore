@@ -3,3 +3,9 @@ node_modules
 
 #design files
 src/design
+
+#vscode
+.vscode
+
+# dist
+dist
