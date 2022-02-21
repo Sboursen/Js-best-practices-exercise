@@ -17,41 +17,36 @@ export default class LocalStorage {
     }
   };
 
-  resetIndices = (modifiedToDoTasks) => modifiedToDoTasks.map((task, order) => {
-    task.index = order;
-    return task;
-  });
+  resetIndices = (modifiedToDoTasks) =>
+    modifiedToDoTasks.map((task, order) => {
+      task.index = order;
+      return task;
+    });
 
-  updateLocalStorage = (toDoTasks) => {
-    this.toDoTasks = toDoTasks;
+  saveToLocalStorage = () =>
     localStorage.setItem(
       'toDoTasks',
       JSON.stringify(this.toDoTasks),
     );
+
+  updateLocalStorage = (toDoTasks) => {
+    this.toDoTasks = toDoTasks;
+    this.saveToLocalStorage();
   };
 
   addToLocalStorage = (task) => {
     this.toDoTasks.push(task);
-    localStorage.setItem(
-      'toDoTasks',
-      JSON.stringify(this.toDoTasks),
-    );
+    this.saveToLocalStorage();
   };
 
   changeTaskStatus = (task, status) => {
     this.toDoTasks[task.index].completed = status;
-    localStorage.setItem(
-      'toDoTasks',
-      JSON.stringify(this.toDoTasks),
-    );
+    this.saveToLocalStorage();
   };
 
   changeTaskDescription = (task, description) => {
     this.toDoTasks[task.index].description = description;
-    localStorage.setItem(
-      'toDoTasks',
-      JSON.stringify(this.toDoTasks),
-    );
+    this.saveToLocalStorage();
   };
 
   readLocalStorage = () => {
